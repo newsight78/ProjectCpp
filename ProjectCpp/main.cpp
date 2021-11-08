@@ -1,4 +1,9 @@
 #include <stdio.h>
+#include <iostream>
+#include <vector>
+#include "main.h"
+
+using namespace std;
 
 int main(void)
 {
@@ -6,7 +11,6 @@ int main(void)
     long num2 = 0;
     bool isFinished = false;
     char calcOperator = 0;
-    
     
     try {
         printf("첫 번째 숫자 : ");   scanf("%ld", &num1);    rewind(stdin);
@@ -46,6 +50,7 @@ int main(void)
             }
             
             if(isFinished == true) {
+                compareNumbers(1, 1);
                 break;
             }
         }
@@ -54,4 +59,29 @@ int main(void)
         printf("%s\n", err);
     }
     return 0;
+}
+
+bool compareNumbers(long num1st, long num2nd)
+{
+    vector<int> vt;
+
+    auto i = "Outs";
+
+    auto y = [](int first, int second)
+    {
+        return first + second;
+    };
+
+    vt.push_back(y(1, 2));
+    vt.push_back(y(2, 2));
+    vt.push_back(y(3, 2));
+    vt.push_back(y(4, 2));
+
+    printf("%s", i);
+
+    if(num1st == num2nd)
+    {
+        return true;
+    }
+    return false;
 }

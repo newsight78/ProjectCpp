@@ -1,3 +1,60 @@
+/*
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "shell",
+        "label": "C/C++: g++ build active file",
+        "command": "/usr/bin/g++",
+        "args": [
+          "-std=c++17", // 2020.08.05 추가
+          "-stdlib=libc++", // 2020.08.05 추가
+          "-g",
+          "${file}",
+          "-o",
+          //수정
+          "${fileDirname}/${fileBasenameNoExtension}.out",
+  
+          //추가
+          // 1. execute .out file
+          "&&", //to join building and running of the file
+          "${fileDirname}/${fileBasenameNoExtension}.out",
+  
+          //추가
+          //2. file input
+          //"<",
+          //"${fileDirname}/input.txt",
+  
+          //추가
+          //3. file output
+          //">",
+          //"${fileDirname}/output.txt"
+        ],
+        "options": {
+          "cwd": "${workspaceFolder}"
+        },
+        "problemMatcher": ["$gcc"],
+        // 수정
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        }
+      },
+      // //실행 파일 추가
+      // {
+      //   "label": "exec",
+      //   "type": "shell",
+      //   "command": "${fileDirname}/${fileBasenameNoExtension}.out",
+      //   "group": {
+      //     "kind": "build",
+      //     "isDefault": true
+      //   }
+      // }
+    ]
+  }
+*/
+
+/*
 {
     "tasks": [
         {
@@ -25,4 +82,42 @@
         }
     ],
     "version": "2.0.0"
+}
+*/
+
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "clang++ build active file",
+      "command": "/usr/bin/clang++",
+      "args": [
+        "-std=c++17",
+        "-stdlib=libc++",
+        "-g",
+        "${file}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Open Terminal",
+      "type": "shell",
+      "command": "osascript -e 'tell application \"Terminal\"\ndo script \"echo hello\"\nend tell'",
+      "problemMatcher": []
+    }
+  ]
 }
