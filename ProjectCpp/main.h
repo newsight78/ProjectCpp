@@ -22,14 +22,15 @@ struct SumFunctor : public std::unary_function<int, void>
     void operator()(int &number)
     {
         sum += number;
-    }
+    }   
 
 private:
     int &sum;
 };
 
 int main();
-
+int calc1();
+int calc2();
 bool calculate();
 bool compareNumbers(long num1st, long num2nd);
 

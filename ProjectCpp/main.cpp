@@ -5,7 +5,40 @@ using namespace std;
 
 int main(void)
 {
-    calculate();
+    //  calculate();
+    int i = 0;
+    
+//    i = calc1();
+    i = calc2();
+
+    return 0;
+}
+
+int calc1()
+{
+    int v1, v2, sum;    // v1, v2, sum are variable and int is data type declared
+
+    v1=150;
+    v2=25;
+    sum = v1 + v2;
+
+    printf("The sum of %i and %i is=%i\n", v1, v2, sum);
+    
+    return 0;
+}
+
+int calc2()
+{
+    int X = 4;
+    do
+    {
+        printf("%d", X);
+        X = X + 1;
+    }
+    while(X <= 10);
+
+    printf(" ");
+
     return 0;
 }
 
