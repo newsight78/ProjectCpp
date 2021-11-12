@@ -29,9 +29,10 @@ private:
 };
 
 int main();
-int calc1();
-int calc2();
-bool calculate();
+void calc1();
+void calc2();
+void func_strcat();
 bool compareNumbers(long num1st, long num2nd);
+bool calculate();
 
 #endif /* main_h */

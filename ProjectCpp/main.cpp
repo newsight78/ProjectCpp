@@ -5,16 +5,15 @@ using namespace std;
 
 int main(void)
 {
-    //  calculate();
-    int i = 0;
-    
-//    i = calc1();
-    i = calc2();
+//  calculate();
+//  calc1();
+//  calc2();
+    func_strcat();
 
     return 0;
 }
 
-int calc1()
+void calc1()
 {
     int v1, v2, sum;    // v1, v2, sum are variable and int is data type declared
 
@@ -23,11 +22,9 @@ int calc1()
     sum = v1 + v2;
 
     printf("The sum of %i and %i is=%i\n", v1, v2, sum);
-    
-    return 0;
 }
 
-int calc2()
+void calc2()
 {
     int X = 4;
     do
@@ -38,8 +35,35 @@ int calc2()
     while(X <= 10);
 
     printf(" ");
+}
 
-    return 0;
+void func_strcat()
+{
+    char str1[20], str2[20];
+    
+    printf("Enter two strings:");
+    gets(str1);
+    gets(str2);
+    strcat(str1, str2);
+    printf("First string: %s\t second string: %s\n", str1, str2);
+    strcat(str1,"- one");
+    printf("Now first string is %s\n", str1);
+}
+
+bool compareNumbers(long num1st, long num2nd)
+{
+    std::array<int, 5> numbers = {1, 2, 3, 4, 5};
+    int sum = 0;
+
+    std::for_each(numbers.begin(), numbers.end(), SumFunctor(sum));
+
+    sum = 0;
+
+    // lambda로 구현
+    std::for_each(numbers.begin(), numbers.end(), [&sum](int &number)
+                  { sum += number; });
+
+    return true;
 }
 
 bool calculate()
@@ -107,21 +131,5 @@ bool calculate()
     {
         printf("%s\n", err);
     }
-    return true;
-}
-
-bool compareNumbers(long num1st, long num2nd)
-{
-    std::array<int, 5> numbers = {1, 2, 3, 4, 5};
-    int sum = 0;
-
-    std::for_each(numbers.begin(), numbers.end(), SumFunctor(sum));
-
-    sum = 0;
-
-    // lambda로 구현
-    std::for_each(numbers.begin(), numbers.end(), [&sum](int &number)
-                  { sum += number; });
-
     return true;
 }
