@@ -1,7 +1,6 @@
 {
     "files.associations": {
-        "utility": "cpp",
-        "__availability": "cpp",
-        "string": "cpp"
+        "climits": "cpp",
+        "limits.h": "c"
     }
 }
