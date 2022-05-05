@@ -126,6 +126,8 @@ int main()
 }
 */
 
+/*
+// 43-pages
 // To display hexdecimal integer literals and
 // decimal integer literals with
 //
@@ -143,5 +145,47 @@ int main()
     cout << "Value of 27 = " << hex << 27 << " hexadecimal"
          << endl; // Output : 1b hexadecimal
     // 0x1B
+    return 0;
+}
+*/
+
+/*
+// 47-pages
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    cout << "\nThis is \t a string\n\t\t"
+            " with \"many\" escape sequences!\n";
+
+    cout << "I am a very, very \
+long string";
+    return 0;
+}
+*/
+
+// 51-pages
+// Definition and use of variables
+#include <iostream>
+using namespace std;
+
+int gVar1;          // Global variables
+int gVar2 = 2;      // explicit initialization
+
+int main()
+{
+    char ch('A');   // Local variables being initialized
+                    // or: char ch = 'A';
+    
+    cout << "Value of gVar1:    " << gVar1 << endl;
+    cout << "Value of gVar2:    " << gVar2 << endl;
+    cout << "Character in ch:   " << ch << endl;
+
+    int sum, number = 3;    //Local variables with
+                            // and without initialization
+    sum = number + 5;
+    cout << "Value of sum:      " << sum << endl;
+
     return 0;
 }
