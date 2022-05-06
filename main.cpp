@@ -165,6 +165,7 @@ long string";
 }
 */
 
+/*
 // 51-pages
 // Definition and use of variables
 #include <iostream>
@@ -189,3 +190,4 @@ int main()
 
     return 0;
 }
+*/
