@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Rust dylib with C++",
+            "type": "lldb",
+            "request": "launch",
+            "program": "/usr/local/ProjectCpp/main", // C++ main 실행 파일 경로
+            "args": [],
+            "cwd": "/usr/local/ProjectCpp", // C++ 프로젝트의 작업 디렉터리
+            "env": {
+                "DYLD_LIBRARY_PATH": "/usr/local/ProjectRust/Rustlib/target/debug" // Rust dylib 파일 경로
+            },
+            "sourceMap": {
+                "/usr/local/ProjectRust/Rustlib": "/usr/local/ProjectRust/Rustlib" // Rust 소스 매핑
+            },
+            "preLaunchTask": "cargo build", // Rust 프로젝트 빌드 명령
+            "stopOnEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        }
+    ]
+}

@@ -168,25 +168,94 @@ long string";
 
 // 51-pages
 // Definition and use of variables
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
-int gVar1;          // Global variables
-int gVar2 = 2;      // explicit initialization
+// int gVar1;          // Global variables
+// int gVar2 = 2;      // explicit initialization
 
-int main()
-{
-    char ch('A');   // Local variables being initialized
-                    // or: char ch = 'A';
+// int main()
+// {
+//     char ch('A');   // Local variables being initialized
+//                     // or: char ch = 'A';
     
-    cout << "Value of gVar1:    " << gVar1 << endl;
-    cout << "Value of gVar2:    " << gVar2 << endl;
-    cout << "Character in ch:   " << ch << endl;
+//     cout << "Value of gVar1:    " << gVar1 << endl;
+//     cout << "Value of gVar2:    " << gVar2 << endl;
+//     cout << "Character in ch:   " << ch << endl;
 
-    int sum, number = 3;    //Local variables with
-                            // and without initialization
-    sum = number + 5;
-    cout << "Value of sum:      " << sum << endl;
+//     int sum, number = 3;    //Local variables with
+//                             // and without initialization
+//     sum = number + 5;
+//     cout << "Value of sum:      " << sum << endl;
 
+//     return 0;
+// }
+
+#include <iostream>
+#include <dlfcn.h>  // Linux/macOS의 경우
+#include <locale>
+#include <codecvt>
+#include <string>
+#include <cstring>
+
+extern "C" {
+    int add(int a, int b);                   // add 함수 프로토타입
+    int sub(int a, int b);                   // sub 함수 프로토타입
+    int search(const char* query);           // search 함수 프로토타입
+}
+
+int main() {
+    // Rust 라이브러리 로드
+    void* handle = dlopen("/usr/local/ProjectRust/Rustlib/target/debug/libRustlib.dylib", RTLD_LAZY);
+    if (!handle) {
+        std::cerr << "Could not load library!" << std::endl;
+        return 1;
+    }
+
+    // Rust의 add 함수 가져오기
+    int (*add_func)(int, int) = (int (*)(int, int))dlsym(handle, "add");
+    if (!add_func) {
+        std::cerr << "Could not load add function!" << std::endl;
+        dlclose(handle);
+        return 1;
+    }
+
+    // Rust의 sub 함수 가져오기
+    int (*sub_func)(int, int) = (int (*)(int, int))dlsym(handle, "sub");
+    if (!sub_func) {
+        std::cerr << "Could not load sub function!" << std::endl;
+        dlclose(handle);
+        return 1;
+    }
+
+    // Rust의 search 함수 가져오기
+    int (*search_func)(const char*) = (int (*)(const char*))dlsym(handle, "search");
+    if (!search_func) {
+        std::cerr << "Could not load search function!" << std::endl;
+        dlclose(handle);
+        return 1;
+    }
+
+    // add 함수 호출
+    int sum = add_func(2, 3);
+    std::cout << "2 + 3 = " << sum << std::endl;
+
+    // sub 함수 호출
+    int difference = sub_func(5, 3);
+    std::cout << "5 - 3 = " << difference << std::endl;
+
+    // search 함수 호출
+    const char* query = "қайда";  // 검색할 단어
+    int result = search_func(query);
+    if (result == 0) {
+        std::cout << "Search completed successfully." << std::endl;
+    } else if (result == 2) {
+        std::cout << "Word not found." << std::endl;
+    } else {
+        std::cerr << "Error during search." << std::endl;
+    }
+
+    // 메모리 해제
+    dlclose(handle);
     return 0;
 }
